@@ -15,21 +15,18 @@ spring:
     username: admin
     password: admin
 
-server:
-  port: 8101
+server:  port: 8101
   
 eureka:
   client:
     service-url:
       defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
-
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
 management:
   endpoints:
     web:
       exposure:
         include: refresh
       
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
